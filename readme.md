@@ -170,3 +170,81 @@ The new end date is: 2025-09-11
 The first println shows that startDate was not changed by calling startDate.plusDays(10), because the result was discarded. startDate is immutable. To capture the change, you must assign the result of the operation to a variable, as shown with endDate. This prevents accidental modification and makes the code's behavior predictable.
 
 ---
+
+### Exercise 5: Adding and Subtracting Time (plus and minus)
+
+**Code to run:**
+```
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class DateTimeLab {
+    public static void main(String[] args) {
+        LocalDateTime baseTime = LocalDateTime.of(2025, 10, 15, 10, 30, 0);
+        
+        LocalDateTime futureTime = baseTime.plusYears(1).plusMonths(2).plusHours(5);
+        LocalDateTime pastTime = baseTime.minusWeeks(3).minusDays(3);
+        
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        System.out.println("Base time:   " + baseTime.format(dtf));
+        System.out.println("Future time: " + futureTime.format(dtf));
+        System.out.println("Past time:   " + pastTime.format(dtf));
+    }
+}
+```
+**Predicted Output:**
+```
+Base time: 2025-10-15 10:30
+Future time: 2026-12-15 15:30
+Past time: 2025-09-21 15:30
+```
+
+**Actual Output:**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-JavaDateTime/blob/main/images/Ex5.png"/>
+
+**Note**
+
+In the past time, I used the wrong time. I should have used the base time since the `LocalDateTime pastTime` object did not modify it.
+
+**Explanation:**
+
+You can chain plus... and minus... methods to perform complex calculations fluently. Each method call returns a new LocalDateTime object, which is then used for the next call in the chain. The API correctly handles details like the number of days in a month.
+
+---
+
+### Exercise 6: Period - Measuring a Span of Time
+
+**Code to run:**
+```
+import java.time.LocalDate;
+import java.time.Period;
+
+public class DateTimeLab {
+    public static void main(String[] args) {
+        LocalDate date1 = LocalDate.of(2024, 3, 15);
+        LocalDate date2 = LocalDate.of(2026, 7, 20);
+        
+        Period period = Period.between(date1, date2);
+        
+        System.out.print("The period between the two dates is: ");
+        System.out.print(period.getYears() + " years, ");
+        System.out.print(period.getMonths() + " months, and ");
+        System.out.println(period.getDays() + " days.");
+    }
+}
+```
+**Predicted Output:**
+```
+The period between the two dates is: 2 years, 4 months, and 5  days.
+```
+
+**Actual Output:**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-JavaDateTime/blob/main/images/Ex6.png"/>
+
+
+**Explanation:**
+
+Period.between(startDate, endDate) calculates the time difference between two LocalDate objects. It breaks down the total duration into years, months, and days. The calculation is smart; for instance, from March 15 to July 20, it correctly identifies the full months that have passed (April, May, June) and the remaining days.
