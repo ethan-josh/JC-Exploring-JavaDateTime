@@ -127,3 +127,46 @@ Mistake on the Custom format, MMM gives abbreviated name but not in uppercase: `
 **Explanation:**
 
 The formatter combines patterns for both date and time. MMM gives the abbreviated month name (e.g., "Nov"). You can also include literal text in the pattern by enclosing it in single quotes, like 'at'. The default format for LocalDateTime separates the date and time with a T.
+
+---
+
+### Exercise 4: The Immutability of Date-Time Objects
+
+**Code to run:**
+```
+import java.time.LocalDate;
+
+public class DateTimeLab {
+    public static void main(String[] args) {
+        LocalDate startDate = LocalDate.of(2025, 9, 1);
+        
+        // Attempt to add 10 days, but don't assign the result
+        startDate.plusDays(10);
+        
+        System.out.println("Start date after trying to modify it: " + startDate);
+        
+        // Now, correctly add 10 days by assigning the result to a new variable
+        LocalDate endDate = startDate.plusDays(10);
+        
+        System.out.println("The original start date is still: " + startDate);
+        System.out.println("The new end date is: " + endDate);
+    }
+}
+```
+**Predicted Output:**
+```
+Start date after trying to modify it: 2025-09-01
+The original start date is still: 2025-09-01
+The new end date is: 2025-09-11
+```
+
+**Actual Output:**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-JavaDateTime/blob/main/images/Ex4.png"/>
+
+
+**Explanation:**
+
+The first println shows that startDate was not changed by calling startDate.plusDays(10), because the result was discarded. startDate is immutable. To capture the change, you must assign the result of the operation to a variable, as shown with endDate. This prevents accidental modification and makes the code's behavior predictable.
+
+---

@@ -38,12 +38,20 @@ public class DateTimeLab{
         
         DateTimeFormatter dtfex3 = DateTimeFormatter.ofPattern("MMM dd, yyyy 'at' hh:mm a");
 
-        System.out.println("Default format: " + event);
-        System.out.println("Custom format: " + event.format(dtfex3));
+        // System.out.println("Default format: " + event);
+        // System.out.println("Custom format: " + event.format(dtfex3));
         // ******************************************
 
         // Exercise #4 ******************************
-		
+		LocalDate startDate = LocalDate.of(2025, 9, 1);
+        
+        startDate.plusDays(10);
+        System.out.println("Start date after trying to modify it: " + startDate);
+    
+        LocalDate endDate = startDate.plusDays(10);
+        
+        System.out.println("The original start date is still: " + startDate);
+        System.out.println("The new end date is: " + endDate);
         // ******************************************
 
         // Exercise #5 ******************************
