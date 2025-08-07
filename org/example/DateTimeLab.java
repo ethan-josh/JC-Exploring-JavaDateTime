@@ -6,6 +6,8 @@ import java.util.Locale;
 
 import java.time.LocalTime;
 
+import java.time.LocalDateTime;
+
 public class DateTimeLab{
 	public static void main(String[] args){
 
@@ -26,13 +28,18 @@ public class DateTimeLab{
         DateTimeFormatter dtf1ex2 = DateTimeFormatter.ofPattern("HH:mm:ss");
         DateTimeFormatter dtf2ex2 = DateTimeFormatter.ofPattern("hh:mm:ss a");
 
-        System.out.println("Default format: " + now);
-        System.out.println("24-hour format: " + now.format(dtf1ex2));
-        System.out.println("12-hour format with AM/PM: " + now.format(dtf2ex2));	
+        // System.out.println("Default format: " + now);
+        // System.out.println("24-hour format: " + now.format(dtf1ex2));
+        // System.out.println("12-hour format with AM/PM: " + now.format(dtf2ex2));	
         // ******************************************
 
         // Exercise #3 ******************************
-		
+        LocalDateTime event = LocalDateTime.of(2025, 11, 27, 19, 0, 0);
+        
+        DateTimeFormatter dtfex3 = DateTimeFormatter.ofPattern("MMM dd, yyyy 'at' hh:mm a");
+
+        System.out.println("Default format: " + event);
+        System.out.println("Custom format: " + event.format(dtfex3));
         // ******************************************
 
         // Exercise #4 ******************************
